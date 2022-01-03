@@ -14,3 +14,17 @@ For this, I've used the Poetry to create the project and add the dependencies.
 Then, I've created some simple endpoints to test my application.
 
 To structure the endpoints, I've also used the Blueprints.
+
+
+## Chapter 2
+
+In this second video, I show different methods to authenticate a request into
+a Flask application.
+
+I start using a Basic Authentication and then JWT. Both authentication are
+validated with the library flask-httpauth using decorators.
+
+To protect endpoints with any kind of authentication, I only need to add the
+adequate decorator to the endpoint signature.
+
+

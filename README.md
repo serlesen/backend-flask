@@ -28,3 +28,17 @@ To protect endpoints with any kind of authentication, I only need to add the
 adequate decorator to the endpoint signature.
 
 
+## Chapter 3
+
+In this third video, I will configure the database connection with SQLAlchemy.
+Flask and SQLAlchemy work very well together. The database connection can direclty
+be injected in the Flask application and SQLAlchemy will read it.
+
+I will also create some entities to show the most common relationships: one-to-one,
+one-to-many, many-to-one and many-to-many.
+
+Here is the command I've used to create the database in the video:
+```
+docker run -d -e POSTGRES_HOST_AUTH_METHOD=trust -e POSTGRES_USER=sergio -e POSTGRES_PASSWORD=my-password -e POSTGRES_DB=backenddb -p 5432:5432 postgres:13
+```
+

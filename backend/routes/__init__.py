@@ -1,30 +1,27 @@
 import jwt
 
 from flask_httpauth import HTTPBasicAuth, HTTPTokenAuth
-from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy import select
+from werkzeug.security import check_password_hash
 
-allowed_users = {
-    "sergio": generate_password_hash("my-password"),
-    "bob": generate_password_hash("his-password"),
-    }
-
-allowed_tokens = {
-    "token-sergio": "sergio",
-    "token-bob": "bob",
-    }
+from backend import db
+from backend.models.user import User
 
 basic_auth = HTTPBasicAuth()
 token_auth = HTTPTokenAuth(scheme="Bearer")
 
 secret_token = "mysecret"
 
+
 @basic_auth.verify_password
 def verify_basic_password(username, password):
-    if username not in allowed_users:
+    user = db.session.scalars(select(User).where(User.username == username)).one_or_none()
+    if not user:
         return None
 
-    if check_password_hash(allowed_users[username], password):
+    if check_password_hash(user.password, password):
         return username
+
 
 @token_auth.verify_token
 def verify_token(token):
@@ -32,7 +29,9 @@ def verify_token(token):
         decoded_jwt = jwt.decode(token, secret_token, algorithms=["HS256"])
     except Exception as e:
         return None
-    if decoded_jwt["name"] in allowed_users:
-        return decoded_jwt["name"]
+
+    user = db.session.scalars(select(User).where(User.username == decoded_jwt["username"])).one_or_none()
+    if user:
+        return decoded_jwt["username"]
     return None
 

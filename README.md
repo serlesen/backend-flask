@@ -42,3 +42,19 @@ Here is the command I've used to create the database in the video:
 docker run -d -e POSTGRES_HOST_AUTH_METHOD=trust -e POSTGRES_USER=sergio -e POSTGRES_PASSWORD=my-password -e POSTGRES_DB=backenddb -p 5432:5432 postgres:13
 ```
 
+
+## Chapter 4
+
+In this fourth video, I show how to use Marshmallow to serialize and deserialize
+JSON document to and from objects. I will also show how to use Marshmallow to
+validate JSON documents.
+
+With Marshmallow, I must create to be used against JSON documents. Those schemas
+define the rules for each field, required or not, type and some custom
+validation rules.
+
+I also have a Marshmallow / SQLAlchemy dependency which allows me to create the
+schemas directly from the SQLAlchemy models.
+
+
+

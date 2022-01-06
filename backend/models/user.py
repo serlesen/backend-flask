@@ -1,3 +1,4 @@
+from marshmallow_sqlalchemy import auto_field, SQLAlchemyAutoSchema, SQLAlchemySchema
 from sqlalchemy.orm import relationship
 
 from backend import db
@@ -28,3 +29,21 @@ class Profile(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(User.id))
 
     user = relationship(User.__name__, uselist=False, back_populates="profile")
+
+
+class UserSchema(SQLAlchemySchema):
+    class Meta:
+        model = User
+        include_relationships = True
+        load_instance = True
+
+    id = auto_field()
+    username = auto_field()
+    email = auto_field()
+
+
+class ProfileSchema(SQLAlchemyAutoSchema):
+    class Meta:
+        model = Profile
+        include_relationships = True
+        load_instance = True

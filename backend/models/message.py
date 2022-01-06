@@ -1,3 +1,4 @@
+from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 from sqlalchemy.orm import relationship
 
 from backend import db
@@ -14,3 +15,10 @@ class Message(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(User.id), nullable=False)
 
     user = relationship(User.__name__, backref="messages", cascade="all")
+
+
+class MessageSchema(SQLAlchemyAutoSchema):
+    class Meta:
+        model = Message
+        include_relationships = True
+        load_instance = True

@@ -57,4 +57,15 @@ I also have a Marshmallow / SQLAlchemy dependency which allows me to create the
 schemas directly from the SQLAlchemy models.
 
 
+## Chapter 5
+
+In this fifth video, I've added the unit tests unit Pytest. I've used the parametrized
+tests to run a single test with multiple inputs. I've also created some tests
+using two different ways of mock. If also created a conftest file with the initialization
+of the application, the database and the data.
+
+Here is the command I've used to create the database in the video:
+```
+docker run -d -e POSTGRES_HOST_AUTH_METHOD=trust -e POSTGRES_USER=sergio -e POSTGRES_PASSWORD=my-password -e POSTGRES_DB=backenddb -p 5432:5432 postgres:13
+```
 

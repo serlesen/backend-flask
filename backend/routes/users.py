@@ -31,8 +31,9 @@ def create_user():
 
     return Response(status=204)
 
-@users_bp.route("/<user_id>")
+
+@users_bp.route("/<username>")
 @token_auth.login_required
-def get_user(user_id):
-    user = db.session.scalars(select(User).where(User.id == user_id)).one()
+def get_user(username):
+    user = db.session.scalars(select(User).where(User.username == username)).one()
     return jsonify(user_schema.dump(user))

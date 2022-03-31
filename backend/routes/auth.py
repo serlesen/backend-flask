@@ -11,6 +11,7 @@ from backend.routes import secret_token
 auth_bp = Blueprint("auth", __name__)
 credentials_schema = CredentialsSchema()
 
+
 @auth_bp.route("/login", methods=["POST"])
 def login():
     d = request.json
@@ -18,7 +19,7 @@ def login():
 
     user = db.session.scalars(select(User).where(User.username == credentials.username)).one_or_none()
     if not user:
-        return jsonify({"error" : "no user found in database"}), 404
+        return jsonify({"error": "no user found in database"}), 404
 
     if not check_password_hash(user.password, credentials.password):
         raise Exception("Invalid password")
@@ -26,4 +27,3 @@ def login():
     encoded_jwt = jwt.encode({"sub": user.id, "username": user.username}, secret_token, algorithm="HS256")
 
     return jsonify({"token": encoded_jwt})
-

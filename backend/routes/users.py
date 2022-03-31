@@ -1,12 +1,11 @@
-from sqlalchemy import select, insert
+from flask import Blueprint, Response, jsonify, request
+from sqlalchemy import insert, select
 from werkzeug.security import generate_password_hash
 
 from backend import db
 from backend.dto.user import UserCreationSchema
 from backend.models.user import User, UserSchema
-from backend.routes import basic_auth, token_auth
-
-from flask import Blueprint, jsonify, request, Response
+from backend.routes import token_auth
 
 users_bp = Blueprint("users", __name__, url_prefix="/users")
 user_schema = UserSchema()
@@ -26,7 +25,12 @@ def create_user():
     new_user = user_creation_schema.load(d)
 
     db.session.execute(
-        insert(User).values(username=new_user.username, email=new_user.email, password=generate_password_hash(new_user.password)))
+        insert(User).values(
+            username=new_user.username,
+            email=new_user.email,
+            password=generate_password_hash(new_user.password),
+        )
+    )
     db.session.commit()
 
     return Response(status=204)

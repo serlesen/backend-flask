@@ -7,6 +7,7 @@ def fake_session(query):
     class FakeQuery:
         def all(self):
             return [{"id": 1, "name": "First"}, {"id": 2, "name": "Second"}]
+
     return FakeQuery()
 
 

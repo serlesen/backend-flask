@@ -14,4 +14,3 @@ def test_missing_fields():
     # when / then
     with pytest.raises(ValidationError):
         schema.load(data)
-

@@ -1,5 +1,4 @@
 import jwt
-
 from flask_httpauth import HTTPBasicAuth, HTTPTokenAuth
 from sqlalchemy import select
 from werkzeug.security import check_password_hash
@@ -27,11 +26,10 @@ def verify_basic_password(username, password):
 def verify_token(token):
     try:
         decoded_jwt = jwt.decode(token, secret_token, algorithms=["HS256"])
-    except Exception as e:
+    except Exception:
         return None
 
     user = db.session.scalars(select(User).where(User.username == decoded_jwt["username"])).one_or_none()
     if user:
         return decoded_jwt["username"]
     return None
-

@@ -1,8 +1,8 @@
-from marshmallow_sqlalchemy import auto_field, SQLAlchemyAutoSchema, SQLAlchemySchema
+from marshmallow_sqlalchemy import SQLAlchemyAutoSchema, SQLAlchemySchema, auto_field
 from sqlalchemy.orm import relationship
 
 from backend import db
-from backend.models import user_table_name, profile_table_name
+from backend.models import profile_table_name, user_table_name
 from backend.models.country import Country
 
 
@@ -14,7 +14,7 @@ class User(db.Model):
     password = db.Column(db.Text, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
 
-    country_id = db.Column(db.Integer, db.ForeignKey(Country.id))
+    country_id = db.Column(db.Integer, db.ForeignKey(Country.id))  # type: ignore
 
     country = relationship(Country.__name__)
     profile = relationship("Profile", uselist=False, back_populates="user")

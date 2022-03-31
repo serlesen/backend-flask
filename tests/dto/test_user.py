@@ -14,16 +14,12 @@ from backend.dto.user import UserCreationSchema
         ("ABCDE12345", False),
         ("12345678", False),
         ("Abc123", False),
-    ]
+    ],
 )
 def test_validate_password(password, valid):
     # given
     schema = UserCreationSchema()
-    data = {
-        "username": "sergio",
-        "password": password,
-        "email": "sergio@sergio.com"
-    }
+    data = {"username": "sergio", "password": password, "email": "sergio@sergio.com"}
 
     # when
     try:
@@ -49,16 +45,12 @@ def test_validate_password(password, valid):
         ("sergio@mail", False),
         ("sergio.mail.com", False),
         ("sergio@mail@com", False),
-    ]
+    ],
 )
 def test_validate_email(email, valid):
     # given
     schema = UserCreationSchema()
-    data = {
-        "username": "sergio",
-        "password": "Abcde12345",
-        "email": email
-    }
+    data = {"username": "sergio", "password": "Abcde12345", "email": email}
 
     # when
     try:
@@ -85,4 +77,3 @@ def test_missing_fields():
     # when / then
     with pytest.raises(ValidationError):
         schema.load(data)
-

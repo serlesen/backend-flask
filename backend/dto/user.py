@@ -1,5 +1,6 @@
-from marshmallow import Schema, fields, post_load, validates, ValidationError
 import re
+
+from marshmallow import Schema, ValidationError, fields, post_load, validates
 
 from backend.models.user import User
 
@@ -20,7 +21,7 @@ class UserCreationSchema(Schema):
 
     @validates("email")
     def validates_email(self, value):
-        if not re.match("[^@]+@[^@]+\.[^@]+", value):
+        if not re.match(r"[^@]+@[^@]+\.[^@]+", value):
             raise ValidationError("Invalid email format")
 
     @post_load

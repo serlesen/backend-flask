@@ -19,7 +19,7 @@ def verify_basic_password(username, password):
         return None
 
     if check_password_hash(user.password, password):
-        return username
+        return user
 
 
 @token_auth.verify_token
@@ -31,5 +31,5 @@ def verify_token(token):
 
     user = db.session.scalars(select(User).where(User.username == decoded_jwt["username"])).one_or_none()
     if user:
-        return decoded_jwt["username"]
+        return user
     return None

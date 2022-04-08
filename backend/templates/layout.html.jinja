@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+
+    <head>
+        <title>{{title}}</title>
+        <meta charset="utf-8">
+        <meta name="description" content={{description}}>
+        <link href="http://localhost:5000/static/css/layout.css" rel="stylesheet">
+        {% block css %}{% endblock %}
+    </head>
+
+    <body>
+        <div class="regular-layout">
+            <div class="regular-layout-body">
+                <div class="regular-head">
+                    <div class="regular-title">Social Network - {{ user.username }}</div>
+                    <div class="tabs">
+                        {% for item in navigation_items %}
+                            <a href="{{ item.url }}" class="tab">{{ item.label }}</a>
+                        {% endfor %}
+                        <div class="tab">Logout</div>
+                    </div>
+                </div>
+                <div class="regular-content">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,69 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.regular-layout {
+    text-align: center;
+}
+
+.regular-layout-body {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.regular-layout-body .regular-head {
+    width: 100%;
+    margin: 0;
+    height: 180px;
+    background: deepskyblue;
+    position: fixed;
+    top: 0;
+}
+
+.regular-layout-body .regular-content {
+    margin-top: 180px;
+}
+
+.regular-layout-body .regular-title {
+    margin: 40px;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.regular-layout-body .tabs {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    padding-left: 50px;
+}
+
+.regular-layout-body .tab {
+    width: 100px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-decoration: none;
+    color: white;
+}
+
+.regular-layout-body .tab:hover {
+    background: darkblue;
+    cursor: pointer;
+    color: white;
+}

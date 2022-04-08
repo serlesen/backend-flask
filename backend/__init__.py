@@ -11,6 +11,7 @@ from backend.routes.auth import auth_bp
 from backend.routes.errors import error_bp
 from backend.routes.groups import groups_bp
 from backend.routes.health import health_bp
+from backend.routes.mails import mails_bp
 from backend.routes.users import users_bp
 
 
@@ -26,6 +27,7 @@ def create_app():
     app.register_blueprint(error_bp)
     app.register_blueprint(groups_bp)
     app.register_blueprint(health_bp)
+    app.register_blueprint(mails_bp)
     app.register_blueprint(users_bp)
 
     return app

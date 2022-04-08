@@ -69,3 +69,35 @@ Here is the command I've used to create the database in the video:
 docker run -d -e POSTGRES_HOST_AUTH_METHOD=trust -e POSTGRES_USER=sergio -e POSTGRES_PASSWORD=my-password -e POSTGRES_DB=backenddb -p 5432:5432 postgres:13
 ```
 
+
+## Chapter 6
+
+In this video, I've configured pre-commit and added 4 tools to be run at each commit: isort, 
+black, mypy and flake8.
+
+isort will organize the imports. It will group them by line. It will also group the import of 
+the current project in a separated block, leaving the installed dependencies in another block.
+When the line is too long, it will split it.
+
+Black is a tool which will format the code upon the rules of PEP8. Using double quotes for
+strings, no space before a colon and space after a colon. And a lot more rules.
+
+Mypy is a type checker. It will check if the variables are used expecting the same type as
+they were created.
+
+Flake8 is a code style checker. It will just check what was done after all the previous tools
+modified the code.
+
+All of those tools can be configured into the pyproject.toml except for flake8.
+
+
+## Chapter 7
+
+In this video, I show the usage of Jinja to generate HTML templating to create an HTML file
+used for emails. I will use several blocks of Jinja. I start showing how to return a Jinja
+template from a Flask application. I will inject some variables inside the Jinja template
+while returning it from the controller.
+
+Inside the Jinja template, I show the usage of the for-loops, the blocks for modularity, the
+includes for inheritance and the macros for code reusability.
+

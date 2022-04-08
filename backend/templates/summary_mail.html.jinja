@@ -1,0 +1,24 @@
+
+{% extends 'layout.html.jinja' %}
+
+{% block css %}
+  <link href="http://localhost:5000/static/css/summary_mail.css" rel="stylesheet">
+{% endblock %}
+
+{% macro box(author_url, author_name, date, content) -%}
+    <div class="box">
+        <div class="box-header">
+            <a href="{{ author_url }}" class="box-author">{{ author_name|e }}</a>
+            <div class="box-date">{{ date }}</div>
+        </div>
+        <div class="message-content">{{ content|e }}</div>
+    </div>
+{%- endmacro %}
+
+{% block content %}
+    <div>
+        {% for message in messages %}
+            {{ box(message.author.url, message.author.label, message.date, message.content) }}
+        {% endfor %}
+    </div>
+{% endblock %}

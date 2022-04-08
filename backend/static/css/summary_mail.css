@@ -1,0 +1,49 @@
+.box {
+    background: deepskyblue;
+    border-radius: 2px;
+    text-align: right;
+    box-shadow: 5px 10px #888888;
+    padding: 10px;
+    margin: 30px;
+    width: 600px;
+}
+
+.box .box-header {
+    display: flex;
+}
+
+.box .box-author {
+    width: 50%;
+    margin: 0;
+    text-align: left;
+    padding: 20px;
+    font-weight: bold;
+}
+
+.box .box-date {
+    width: 50%;
+    margin: 0;
+    text-align: right;
+    padding: 20px;
+    font-size: 20px;
+    color: lightgrey;
+}
+
+.box-btn {
+    font-size: 18px;
+    padding: 5px;
+    margin: 5px;
+}
+
+.box .message-content {
+    text-align: left;
+    margin: 20px;
+}
+
+.box .message-post {
+    width: 570px;
+    height: 130px;
+    margin: 10px;
+    resize: none;
+    font-size: 16px;
+}

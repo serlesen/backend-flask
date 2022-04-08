@@ -13,7 +13,7 @@ user_creation_schema = UserCreationSchema()
 
 
 @users_bp.route("", methods=["GET"])
-@token_auth.login_required
+@token_auth.login_required  # type: ignore
 def get_all_users():
     users = db.session.scalars(select(User)).all()
     return jsonify(user_schema.dump(users, many=True))
@@ -37,7 +37,7 @@ def create_user():
 
 
 @users_bp.route("/<username>")
-@token_auth.login_required
+@token_auth.login_required  # type: ignore
 def get_user(username):
     user = db.session.scalars(select(User).where(User.username == username)).one()
     return jsonify(user_schema.dump(user))

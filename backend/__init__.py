@@ -1,7 +1,11 @@
+import logging
+from logging.config import dictConfig
+
 from flask import Flask
 from sqlalchemy import insert, select
 from werkzeug.security import generate_password_hash
 
+from backend.config import Config
 from backend.extensions import db
 from backend.models.country import Country
 from backend.models.group import Group
@@ -14,11 +18,15 @@ from backend.routes.health import health_bp
 from backend.routes.mails import mails_bp
 from backend.routes.users import users_bp
 
+dictConfig(Config.LOGGING)
+LOGGER = logging.getLogger(__name__)
+
 
 def create_app():
+    LOGGER.debug("Configuring the app")
     app = Flask(__name__)
 
-    app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://sergio:my-password@localhost:5432/backenddb"
+    app.config.from_object(Config)
 
     db.app = app
     db.init_app(app)
@@ -29,6 +37,8 @@ def create_app():
     app.register_blueprint(health_bp)
     app.register_blueprint(mails_bp)
     app.register_blueprint(users_bp)
+
+    LOGGER.info("App started")
 
     return app
 

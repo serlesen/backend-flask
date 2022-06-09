@@ -1,3 +1,5 @@
+import logging
+
 from flask import Blueprint, Response, jsonify, request
 from sqlalchemy import insert, select
 from werkzeug.security import generate_password_hash
@@ -7,6 +9,7 @@ from backend.dto.user import UserCreationSchema
 from backend.models.user import User, UserSchema
 from backend.routes import token_auth
 
+LOGGER = logging.getLogger(__name__)
 users_bp = Blueprint("users", __name__, url_prefix="/users")
 user_schema = UserSchema()
 user_creation_schema = UserCreationSchema()
@@ -32,7 +35,7 @@ def create_user():
         )
     )
     db.session.commit()
-
+    LOGGER.info(f"Created new user {new_user.username}")
     return Response(status=204)
 
 

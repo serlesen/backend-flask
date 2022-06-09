@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template
 from sqlalchemy import select
 
-from backend import Message, db
-from backend.models.message import MessageSchema
+from backend import db
+from backend.models.message import Message, MessageSchema
 from backend.routes import token_auth
 
 mails_bp = Blueprint("mails", __name__)

@@ -101,3 +101,14 @@ while returning it from the controller.
 Inside the Jinja template, I show the usage of the for-loops, the blocks for modularity, the
 includes for inheritance and the macros for code reusability.
 
+
+## Chapter 8
+
+In this chapter, how to use the logging library to print the logs of the application. I will
+show the default usage, a basic configuration and an advanced configuration.
+
+The default usage only has the declaration of the loggers and its usage. The basic configuration
+is just to better format the logs and stream them in the console and to a file. And the
+advanced configuration is when we need to send the logs elsewhere, like with an SMTP mail,
+HTTP request or more, using Queues or Buffers.
+

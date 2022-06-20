@@ -4,6 +4,7 @@ from sqlalchemy import select
 from werkzeug.security import check_password_hash
 
 from backend import db
+from backend.decorators import timed
 from backend.dto.credentials import CredentialsSchema
 from backend.models.user import User
 from backend.routes import secret_token
@@ -12,6 +13,7 @@ auth_bp = Blueprint("auth", __name__)
 credentials_schema = CredentialsSchema()
 
 
+@timed
 @auth_bp.route("/login", methods=["POST"])
 def login():
     d = request.json

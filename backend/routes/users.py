@@ -5,6 +5,7 @@ from sqlalchemy import insert, select
 from werkzeug.security import generate_password_hash
 
 from backend import db
+from backend.decorators import timed
 from backend.dto.user import UserCreationSchema
 from backend.models.user import User, UserSchema
 from backend.routes import token_auth
@@ -15,6 +16,7 @@ user_schema = UserSchema()
 user_creation_schema = UserCreationSchema()
 
 
+@timed
 @users_bp.route("", methods=["GET"])
 @token_auth.login_required  # type: ignore
 def get_all_users():
@@ -22,6 +24,7 @@ def get_all_users():
     return jsonify(user_schema.dump(users, many=True))
 
 
+@timed
 @users_bp.route("", methods=["POST"])
 def create_user():
     d = request.json
@@ -39,6 +42,7 @@ def create_user():
     return Response(status=204)
 
 
+@timed
 @users_bp.route("/<username>")
 @token_auth.login_required  # type: ignore
 def get_user(username):

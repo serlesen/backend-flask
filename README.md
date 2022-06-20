@@ -112,3 +112,19 @@ is just to better format the logs and stream them in the console and to a file. 
 advanced configuration is when we need to send the logs elsewhere, like with an SMTP mail,
 HTTP request or more, using Queues or Buffers.
 
+
+## Chapter 9
+
+In this chapter I show how to implement a custom decorator. A decorator is a method that will surround
+another one. I can add some logic before calling the decorated method and some more logic after
+the decorated method.
+
+I will show two examples. The first one is a timed decorator which will print the time elapsed in
+a method at each call. The decorator will just save the start time and the last time, then print
+the difference between both using the name of the module and the method to help identifying the logs.
+
+The second example is similar to the first one but more advanced. I will print the elapsed time of some
+methods but only print the average time in a given window time. This may be helpful when the method is
+called too many times per second. It could generate a lot of unreadable logs. Using a window time allows
+me to obtain an average value. This means that the decorator must accept some parameters to identify the
+needed window. This will complexify the decorator as it needs another wrapper.

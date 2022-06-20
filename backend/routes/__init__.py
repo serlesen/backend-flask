@@ -6,6 +6,7 @@ from sqlalchemy import select
 from werkzeug.security import check_password_hash
 
 from backend import db
+from backend.decorators import timed_windowed
 from backend.models.user import User
 
 LOGGER = logging.getLogger(__name__)
@@ -16,6 +17,7 @@ secret_token = "mysecret"
 
 
 @basic_auth.verify_password
+@timed_windowed(60)
 def verify_basic_password(username, password):
     user = db.session.scalars(select(User).where(User.username == username)).one_or_none()
     if not user:
@@ -27,6 +29,7 @@ def verify_basic_password(username, password):
 
 
 @token_auth.verify_token
+@timed_windowed(60)
 def verify_token(token):
     try:
         decoded_jwt = jwt.decode(token, secret_token, algorithms=["HS256"])

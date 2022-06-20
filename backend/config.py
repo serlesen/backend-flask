@@ -40,7 +40,7 @@ class Config:
             },
         },
         "loggers": {
-            "": {"handlers": ["console", "z_buffer"], "level": "DEBUG"},
+            "": {"handlers": ["console"], "level": "DEBUG"},
             "flask": {"level": "WARNING"},
             "sqlalchemy": {"level": "WARNING"},
             "werkzeug": {"level": "WARNING"},
